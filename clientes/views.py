@@ -9,7 +9,7 @@ def cliente_list(request):
     clientes = Cliente.objects.all()
     return render(request, 'clientes/cliente_list.html', {'clientes': clientes})
 
-def cliente_create(request):
+def criar_cliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
@@ -19,7 +19,7 @@ def cliente_create(request):
         form = ClienteForm()
     return render(request, 'clientes/cliente_form.html', {'form': form})
 
-def cliente_update(request, pk):
+def atualizar_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
     if request.method == 'POST':
         form = ClienteForm(request.POST, instance=cliente)
@@ -30,7 +30,7 @@ def cliente_update(request, pk):
         form = ClienteForm(instance=cliente)
     return render(request, 'clientes/cliente_form.html', {'form': form})
 
-def cliente_delete(request, pk):
+def excluir_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
     if request.method == 'POST':
         cliente.delete()

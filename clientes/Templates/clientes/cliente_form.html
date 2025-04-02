@@ -1,7 +1,33 @@
-<h2>Cadastro de Cliente</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Salvar</button>
-</form>
-<a href="{% url 'cliente_list' %}">Voltar</a>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cliente</title>
+</head>
+<body>
+    <h2>Cadastro de Cliente</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="id_nome">Nome:</label>
+        {{ form.nome }}
+
+        <label for="id_email">E-mail:</label>
+        {{ form.email }}
+
+        <label for="id_telefone">Telefone:</label>
+        {{ form.telefone }}
+
+        <label for="id_cpf">CPF:</label>
+        {{ form.cpf }}
+
+        <label for="id_aniversario">Data de Aniversário:</label>
+        {{ form.aniversario }}
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="{% url 'cliente_list' %}">Voltar para a lista</a>
+
+</body>
+</html>
