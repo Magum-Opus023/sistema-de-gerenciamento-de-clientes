@@ -1,11 +1,43 @@
-<h2>Lista de Clientes</h2>
-<a href="{% url 'criar_cliente' %}">Adicionar Cliente</a>
-<ul>
-  {% for cliente in clientes %}
-    <li>
-      {{ cliente.nome }} - {{ cliente.email }}
-      <a href="{% url 'atualizar_cliente' cliente.pk %}">Editar</a>
-      <a href="{% url 'excluir_cliente' cliente.pk %}">Excluir</a>
-    </li>
-  {% endfor %}
-</ul>
+{% extends 'clientes/index.html' %}
+
+{% block title %}Lista de Clientes{% endblock %}
+
+{% block content %}
+    <h2>Lista de Clientes</h2>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+                <th>Aniversário</th>
+                <th>Pagamento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.cpf }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefone }}</td>
+                <td>{{ cliente.endereco }}</td>
+                <td>{{ cliente.aniversario|date:"d/m" }}</td>  <!-- Mostra só dia/mês -->
+                <td>{{ cliente.pagamento }}</td>
+                <td>
+                    <a href="{% url 'atualizar_cliente' cliente.pk %}">Editar</a> |
+                    <a href="{% url 'excluir_cliente' cliente.pk %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">Nenhum cliente cadastrado ainda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

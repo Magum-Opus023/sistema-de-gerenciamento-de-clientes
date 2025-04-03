@@ -7,14 +7,19 @@ from .forms import ClienteForm
 
 def cliente_list(request):
     clientes = Cliente.objects.all()
+    print("Clientes recuperados:", clientes)  # Adicionando um print para depuração
     return render(request, 'clientes/cliente_list.html', {'clientes': clientes})
 
 def criar_cliente(request):
     if request.method == 'POST':
+        print("Dados recebidos no formulário:", request.POST)  # Debugging
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
+            print("Cliente salvo com sucesso!")  # Verificar se salvou
             return redirect('cliente_list')
+        else:
+            print("Erro no formulário:", form.errors)  # Se o formulário for inválido, mostre os erros
     else:
         form = ClienteForm()
     return render(request, 'clientes/cliente_form.html', {'form': form})

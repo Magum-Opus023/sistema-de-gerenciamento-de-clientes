@@ -1,33 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Cliente</title>
-</head>
-<body>
+{% extends 'clientes/index.html' %}
+
+{% block title %}Cadastro de Cliente{% endblock %}
+
+{% block content %}
     <h2>Cadastro de Cliente</h2>
-    <form method="POST">
+
+    <form method="post" class="form-container">
         {% csrf_token %}
-        <label for="id_nome">Nome:</label>
-        {{ form.nome }}
 
-        <label for="id_email">E-mail:</label>
-        {{ form.email }}
+        <div class="form-group">
+            <label for="id_nome">Nome:</label>
+            {{ form.nome }}
+        </div>
 
-        <label for="id_telefone">Telefone:</label>
-        {{ form.telefone }}
+        <div class="form-group">
+            <label for="id_cpf">CPF:</label>
+            {{ form.cpf }}
+        </div>
 
-        <label for="id_cpf">CPF:</label>
-        {{ form.cpf }}
+        <div class="form-group">
+            <label for="id_email">E-mail:</label>
+            {{ form.email }}
+        </div>
 
-        <label for="id_aniversario">Data de Aniversário:</label>
-        {{ form.aniversario }}
+        <div class="form-group">
+            <label for="id_telefone">Telefone:</label>
+            {{ form.telefone }}
+        </div>
 
-        <button type="submit">Salvar</button>
+        <div class="form-group">
+            <label for="endereco">Endereço:</label>
+            {{ form.endereco }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_aniversario">Data de Aniversário:</label>
+            {{ form.aniversario }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_pagamento">Pagamento:</label>
+            {{ form.pagamento }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_observacoes">Observações:</label>
+            {{ form.observacoes }}
+        </div>
+
+        <button type="submit" class="btn">Salvar</button>
     </form>
 
-    <a href="{% url 'cliente_list' %}">Voltar para a lista</a>
-
-</body>
-</html>
+    <a href="{% url 'cliente_list' %}" class="back-link">Voltar para a lista</a>
+{% endblock %}

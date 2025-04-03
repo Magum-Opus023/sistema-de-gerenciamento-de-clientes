@@ -8,8 +8,9 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
     telefone = models.CharField(max_length=20)
     endereco = models.TextField()
-    aniversario = models.DateField()
-    observacoes = models.TextField(blank=True)
+    aniversario = models.CharField(max_length=5, help_text="Formato: DD/MM")
+    pagamento = models.CharField(max_length=30)
+    observacoes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.nome

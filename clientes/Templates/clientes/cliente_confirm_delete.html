@@ -1,6 +1,11 @@
-<h2>Deseja excluir "{{ cliente.nome }}"?</h2>
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Confirmar</button>
-</form>
-<a href="{% url 'cliente_list' %}">Cancelar</a>
+{% extends 'clientes/index.html' %}
+
+{% block title %} Deseja excluir "{{ cliente.nome }}"?{% endblock %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+  </form>
+  <a href="{% url 'cliente_list' %}">Cancelar</a>
+{% endblock %}
